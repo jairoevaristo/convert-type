@@ -2,7 +2,7 @@ import {
   getPathDirectoryAbsolute,
   createDirectory,
   readFileDirectory
-} from './Directorys';
+} from './directorys';
 import { cli } from './cli';
 import { running } from './convert';
 
