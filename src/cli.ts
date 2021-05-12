@@ -32,7 +32,7 @@ function cli({ choices }: IChoices) {
       type: 'input',
       name: 'filePath',
       message: 'Digite o caminho do seu arquivo',
-      when: function(answers: IAnswers) {
+      when: (answers: IAnswers) => {
         return answers.isDefaultOptions === false;
       },
     },
@@ -40,19 +40,16 @@ function cli({ choices }: IChoices) {
       type: 'list',
       name: 'savePath',
       message: 'Escolha onde seus arquivos seram salvos',
+      when: (answers: IAnswers) => {
+        return answers.isDefaultOptions === false;
+      },
       choices
     }
   ];
 
   async function initialQuestion(): Promise<IReponse> {
-    try {
-      const reponses = await inquirer.prompt(question);
-      return reponses;
-
-    } catch {
-      console.error('Diretorio nao encontrado');
-      process.exit();
-    }
+    const reponses = await inquirer.prompt(question);
+    return reponses;
   };
 
   return { initialQuestion };

@@ -5,11 +5,12 @@ import path from 'path';
 const run = promisify(exec);
 
 async function running(filename: string, savePath: string) {
-  const [name] = filename.split('.');
+  const pathName = path.basename(filename)
+  const [name] = pathName.split('.')
 
-  console.log(`\n> Convertendo ${path.basename(filename)} para ${path.basename(name)}.pdf`);
+  console.log(`\n> Convertendo ${path.basename(name)}${path.extname(filename)} para ${path.basename(name)}.pdf`);
 
-  const { stdout } = await run(`magick convert ${filename} ${savePath}/${name}.pdf`);
+  const { stdout } = await run(`magick convert ${filename} ${savePath}/convert/${name}.pdf`);
 
   console.log(stdout)
   process.exit();

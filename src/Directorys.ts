@@ -1,9 +1,11 @@
 import path from 'path';
 import fs from 'fs';
 
-type IPath = string[];
+type IPath = {
+  files: string[];
+};
 
-function getPathDirectoryAbsolute(): IPath {
+function getPathDirectoryAbsolute(): string[] {
   const pathRoot = process.cwd().split(path.sep).slice(0, 3);
   const pathCurrent = pathRoot.join('/');
   
@@ -18,19 +20,21 @@ function getPathDirectoryAbsolute(): IPath {
 }
 
 function createDirectory(path: string) {
-  const directory = fs.mkdirSync(`${path}/convert-type`);
-  return directory;
+  fs.mkdir(`${path}/convert`, err => {
+    if (err) console.log('Erro ao criar o diretorio');
+  }); 
 }
 
-function readFileDirectory(path: string):IPath {
-  const files = fs.readdirSync(path, 'utf-8');
+function readFileDirectory(path: string) {
+  try {
+    const files = fs.readdirSync(path, 'utf-8');
   
-  if (!fs.existsSync(path)) {
-    console.error('Diretorio nao encontrado');
-    process.exit();
+    return files;
+
+  } catch {
+    console.error('Erro ao ler os arquivos');
   }
 
-  return files;
 }
 
 export {
