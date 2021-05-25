@@ -22,7 +22,6 @@ async function app() {
   files?.forEach(item => {
     running(`${isFile}/${item}`, isPath)
   })
-  
 }
 
 app();

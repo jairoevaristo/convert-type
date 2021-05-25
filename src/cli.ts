@@ -32,17 +32,13 @@ function cli({ choices }: IChoices) {
       type: 'input',
       name: 'filePath',
       message: 'Digite o caminho do seu arquivo',
-      when: (answers: IAnswers) => {
-        return answers.isDefaultOptions === false;
-      },
+      when: (answers: IAnswers) => answers.isDefaultOptions === false,
     },
     {
       type: 'list',
       name: 'savePath',
       message: 'Escolha onde seus arquivos seram salvos',
-      when: (answers: IAnswers) => {
-        return answers.isDefaultOptions === false;
-      },
+      when: (answers: IAnswers) => answers.isDefaultOptions === false,
       choices
     }
   ];

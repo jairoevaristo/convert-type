@@ -8,12 +8,11 @@ async function running(filename: string, savePath: string) {
   const pathName = path.basename(filename)
   const [name] = pathName.split('.')
 
-  console.log(`\n> Convertendo ${path.basename(name)}${path.extname(filename)} para ${path.basename(name)}.pdf`);
-
   const { stdout } = await run(`magick convert ${filename} ${savePath}/convert/${name}.pdf`);
 
+  console.log(`[x] - Convertendo ${path.basename(name)}${path.extname(filename)} para ${path.basename(name)}.pdf`);
+
   console.log(stdout)
-  process.exit();
 }
 
 export { running };
