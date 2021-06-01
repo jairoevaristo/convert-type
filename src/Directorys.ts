@@ -27,7 +27,6 @@ function createDirectory(path: string) {
 function readFileDirectory(path: string) {
   try {
     const files = fs.readdirSync(path, 'utf-8');
-  
     return files;
 
   } catch {
